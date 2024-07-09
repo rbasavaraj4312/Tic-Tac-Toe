@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            background-color: rgb(234, 234, 234);
+        }
+        .main
+        {
+            display: grid;
+            grid-template-rows: 185px 185px 185px;
+            grid-template-columns: 185px 185px 185px;
+            height: 600px;
+            width: 800px;
+            margin: 50px 350px;
+        }
+        .btn{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 130px;
+            width: 150px;
+            font-size: 50px;
+            font-family: cambria;
+            border-radius: 12px;
+            background-color: rgb(203, 203, 203);
+            box-shadow: 2px 2px 15px 4px rgb(91, 91, 91);
+            border: .5px solid black;
+        }
+        .resetbtn{
+            border-radius: 12px;
+            grid-column: 2;
+            height: 80px;
+            width: 150px;
+            font-weight: 600;
+            font-size: 27px;
+            text-transform: capitalize;
+            background-color: rgb(203, 203, 203);
+            box-shadow: 2px 2px 15px 4px rgb(91, 91, 91);
+        }
+        .btn :active{
+            box-shadow: 5px 5px 15px 4px rgb(225, 58, 58);
+        }
+        .cross{
+            background-color: greenyellow;
+        }
+        .zero{
+            background-color: rgb(237, 110, 110);
+        }
+    </style>
+</head>
+<body>
+    <div class="main" id="myform">
+            <button onclick="check(this)" id="btn1" class="btn">1</button>
+            <button onclick="check(this)" id="btn2" class="btn">2</button>
+            <button onclick="check(this)" id="btn3" class="btn">3</button>
+            <button onclick="check(this)" id="btn4" class="btn">4</button>
+            <button onclick="check(this)" id="btn5" class="btn">5</button>
+            <button onclick="check(this)" id="btn6" class="btn">6</button>
+            <button onclick="check(this)" id="btn7" class="btn">7</button>
+            <button onclick="check(this)" id="btn8" class="btn">8</button>
+            <button onclick="check(this)" id="btn9" class="btn">9</button>
+            <input class="resetbtn" type="reset" onclick="reset()" value="reset">
+    </div>
+
+
+    <script>
+        let btn1=document.getElementById("btn1");
+        let btn2=document.getElementById("btn2");
+        let btn3=document.getElementById("btn3");
+        let btn4=document.getElementById("btn4");
+        let btn5=document.getElementById("btn5");
+        let btn6=document.getElementById("btn6");
+        let btn7=document.getElementById("btn7");
+        let btn8=document.getElementById("btn8");
+        let btn9=document.getElementById("btn9");
+
+        let game=[[" "," "," "],[" "," "," "],[" "," "," "]];
+        let move=" ";
+        
+        btn1.addEventListener("click",function () {
+            game[0][0]=move;
+        })
+
+        btn2.addEventListener("click",function () {
+            game[0][1]=move;
+        })
+
+        btn3.addEventListener("click",function () {
+            game[0][2]=move;
+        })
+
+        btn4.addEventListener("click",function () {
+            game[1][0]=move;
+        })
+
+        btn5.addEventListener("click",function () {
+            game[1][1]=move;
+        })
+
+        btn6.addEventListener("click",function () {
+            game[1][2]=move;
+        })
+
+        btn7.addEventListener("click",function () {
+            game[2][0]=move;
+        })
+
+        btn8.addEventListener("click",function () {
+            game[2][1]=move;
+        })
+
+        btn9.addEventListener("click",function () {
+            game[2][2]=move;
+        })
+
+
+
+        let count=0;
+        function check(button) {
+            if(count%2 != 0){
+                move="X";
+                button.innerText = "X";
+                button.style.backgroundColor= "greenyellow";
+            }
+            else{
+                move="O";
+                button.innerText = "O";
+                button.style.backgroundColor= "rgb(237, 110, 110)";
+            }
+            setTimeout(() => {
+                win(button);
+            }, 1);
+
+            count++;
+        }
+
+        function win(button) {
+            if(game[0][0]=="X" && game[0][1]=="X" && game[0][2]=="X"){
+                alert("X-> wins the game");
+                reset();
+            }
+            if(game[1][0]=="X" && game[0][0]=="X" && game[2][0]=="X"){
+                alert("X-> wins the game");
+                reset();
+            }
+            if(game[0][1]=="X" && game[1][1]=="X" && game[2][1]=="X"){
+                alert("X-> wins the game");
+                reset();
+            }
+            if(game[0][2]=="X" && game[1][2]=="X" && game[2][2]=="X"){
+                alert("X-> wins the game");
+                reset();
+            }
+            if(game[1][0]=="X" && game[1][1]=="X" && game[1][2]=="X"){
+                alert("X-> wins the game");
+                reset();
+            }
+            if(game[2][0]=="X" && game[2][1]=="X" && game[2][2]=="X"){
+                alert("X-> wins the game");
+                reset();
+            }
+            if(game[0][0]=="X" && game[1][1]=="X" && game[2][2]=="X"){ 
+                alert("X-> wins the game");
+                reset();
+            }
+            if(game[0][2]=="X" && game[1][1]=="X" && game[2][0]=="X"){ 
+                alert("X-> wins the game");
+                reset();
+            }
+
+
+            if(game[0][0]=="O" && game[0][1]=="O" && game[0][2]=="O"){
+                alert("O-> wins the game");
+                reset();
+            }
+            if(game[1][0]=="O" && game[0][0]=="O" && game[2][0]=="O"){
+                alert("O-> wins the game");
+                reset();
+            }
+            if(game[0][1]=="O" && game[1][1]=="O" && game[2][1]=="O"){
+                alert("O-> wins the game");
+                reset();
+            }
+            if(game[0][2]=="O" && game[1][2]=="O" && game[2][2]=="O"){
+                alert("O-> wins the game");
+                reset();
+            }
+            if(game[1][0]=="O" && game[1][1]=="O" && game[1][2]=="O"){
+                alert("O-> wins the game");
+                reset();
+            }
+            if(game[2][0]=="O" && game[2][1]=="O" && game[2][2]=="O"){
+                alert("O-> wins the game");
+                reset();
+            }
+            if(game[0][0]=="O" && game[1][1]=="O" && game[2][2]=="O"){ 
+                alert("O-> wins the game");
+                reset();
+            }
+            if(game[0][2]=="O" && game[1][1]=="O" && game[2][0]=="O"){ 
+                alert("O-> wins the game");
+                reset();
+            }
+             
+        }
+        function reset(){
+            location.reload();
+        }
+
+    </script>
+</body>
+</html>
